@@ -1,0 +1,42 @@
+#Puerto
+server:
+  port: 8761
+ 
+spring:
+  ##DATASOURCE
+  datasource:
+    url: jdbc:mysql://localhost:3306/file_upload_download?useSSL=false
+    username: root
+    password: root
+   
+  ## Propiedades Hibernate 
+  jpa:
+    properties:
+     hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+      
+## MULTIPART (MultipartProperties)
+# Habilitar cargas Multipart.
+  http:
+    multipart:
+      enabled:  true
+# Umbral después del cual los archivos se escriben en el disco.
+      file-size-threshold:  2KB
+# Tamaño máximo de archivo.
+      max-file-size:  200MB
+# Tamaño máximo de solicitud.
+      max-request-size: 215MB
+
+## Propiedades de almacenamiento de archivos
+# Todos los archivos cargados a través de la API REST se almacenarán en este directorio
+file:
+  upload-dir: ./uploads
+
+## Hibernate Logging
+logging:
+  level:
+    org:
+      hibernate:
+        SQL:  DEBUG 
